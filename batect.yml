@@ -1,10 +1,27 @@
 containers:
-  my-container:
-    image: alpine:3.11.3
+  pyspark:
+    build_directory: .
+    volumes:
+      - local: .
+        container: /app
+        options: cached
+      - type: cache
+        name: poetry-dependencies
+        container: /root/.cache/pypoetry/virtualenvs
 
 tasks:
-  say-hello:
-    description: Say hello to the nice person reading the Batect documentation
+  unit-test:
+    description: Unit tests
+    group: Test
     run:
-      container: my-container
-      command: echo 'Hello world!'
+      container: pyspark
+      entrypoint: scripts/unit-test.sh
+
+  run-job:
+    description: Run spark job
+    group: Run
+    run:
+      container: pyspark
+      entrypoint: scripts/run-job.sh
+      environment:
+        JOB: $JOB

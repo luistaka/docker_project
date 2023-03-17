@@ -6,10 +6,11 @@ authors = ["luistaka <luis.f.takahashi@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.9.16"
-pandas = "^1.5.3"
-requests = "^2.28.2"
-pyspark = "3.1.2"
+numpy = "^1.20.2"
+pandas = "^1.2.4"
+pyarrow = "^8.0.0"
+pyspark = "^3.1.1"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
