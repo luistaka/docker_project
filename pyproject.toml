@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "poet"
+version = "1"
+description = "teste"
+authors = ["luistaka <luis.f.takahashi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.9.16"
+pandas = "^1.5.3"
+requests = "^2.28.2"
+pyspark = "3.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
