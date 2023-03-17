@@ -44,7 +44,7 @@ cat batect.yml
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Instalação do poetry
 https://www.subcul-science.com/post/20210520poetry/
-curl -sSL https://install.python-poetry.org | python3 -
+curl -sSL https://install.python-poetry.org | python3.9 -
 export PATH="/Users/luis.takahashi/.local/bin:$PATH"
 
 poetry --version
@@ -85,6 +85,6 @@ eval "$(pyenv virtualenv-init -)"
 poetry run spark-submit \
     --master local \
     --py-files dist/data_transformations-*.whl \
-    poet/etl/citibike_ingest.py \
+    poet/etl/test_poet.py \
     "./poet/resource/citibike.csv" \
     "./output_int"
