@@ -8,7 +8,8 @@ RUN if [ "$(arch)" = "aarch64" ] ; then ARCHITECTURE="aarch64" ; else ARCHITECTU
     wget -O spark-hadoop.tgz https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
 RUN tar xzf OpenJDK.tar.gz && \
     tar xvf scala.tgz && \
-    tar xvf spark-hadoop.tgz
+    tar xvf spark-hadoop.tgz \
+    sudo apt-get install zip
 ENV PATH="/opt/jdk-11.0.11+9/bin:/opt/scala-2.13.5/bin:/opt/spark-3.2.1-bin-hadoop3.2/bin:$PATH"
 
 RUN curl -sSL https://install.python-poetry.org | python3 -

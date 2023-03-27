@@ -2,13 +2,15 @@
 
 set -euo pipefail
 
+zip -r ./dist/poet.zip poet
+
 poetry build
 
 jobName=$(echo "${JOB}" | awk '{ print tolower($1) }')
 
 if [[ "${jobName}" == "citibike_ingest" ]]; then
-    INPUT_FILE_PATH="./poet/resource/citibike.csv"
     JOB_ENTRY_POINT="poet/etl/test_poet.py"
+    INPUT_FILE_PATH="./poet/resource/citibike.csv"
     OUTPUT_PATH="./output_int"
 else
   echo "Job name provided was : ${JOB} : failed"
@@ -21,7 +23,7 @@ rm -rf $OUTPUT_PATH
 
 poetry run spark-submit \
     --master local \
-    --py-files dist/data_transformations-*.whl \
+    --py-files dist/poet-1-py3-none-any.whl \
     $JOB_ENTRY_POINT \
     $INPUT_FILE_PATH \
     $OUTPUT_PATH

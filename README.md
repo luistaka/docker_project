@@ -65,6 +65,9 @@ poetry debug info
 # List dependencies
 poetry show --tree
 
+# create poetry.lock file
+poetry lock
+
 # Installand remove new libs
 poetry add requests
 poetry add -D pytest
@@ -80,11 +83,14 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# job
+# job local
 
 poetry run spark-submit \
     --master local \
-    --py-files dist/data_transformations-*.whl \
+    --py-files dist/poet-*.whl \
     poet/etl/test_poet.py \
     "./poet/resource/citibike.csv" \
     "./output_int"
+
+# job docker 
+JOB=citibike_ingest ./batect run-job
